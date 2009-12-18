@@ -13,11 +13,12 @@ desc 'use rake db:fixtures:export_for_tables TABLES=foos[,bars,lands] Create YAM
 namespace :db do  
   namespace :fixtures do
     task :export_for_tables => :environment do 
-      sql = "SELECT * FROM %s" 
-      tables = ENV['TABLES'] 
       ActiveRecord::Base.establish_connection 
-      tables.each do |table_name| 
-        write_yaml_fixtures_to_file(sql % table_name, table_name)
+      tables = ENV['TABLES'].split(',') 
+      sql = "SELECT %s FROM %s"
+      tables.each do |table_name|
+        fields = (table_name.singularize.camelize.constantize.column_names - ['created_at', 'updated_at']).join(', ')
+        write_yaml_fixtures_to_file(sql % [fields, table_name], table_name)
       end 
     end
   end
