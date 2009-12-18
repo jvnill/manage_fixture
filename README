@@ -8,7 +8,7 @@ Similarly, if you want to import a selected set of Models, you can do that using
 
 = INSTALLATION
 
-  [%] git clone git://github.com/jvnill/manage_fixture.git vendor/plugins/
+  [%] git clone git://github.com/jvnill/manage_fixture.git vendor/plugins/manage_fixtures
 
 
   This is the old installation procedure. The link http://svn.toolbocks.com/plugins/manage_fixtures/ is down for quite some time now.
